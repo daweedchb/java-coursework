@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Главная страница</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background: #E0FFFF;
+        }
+
+        .decor_2 {
+            position: relative;
+            max-width: 800px;
+            margin: 100px auto 0;
+            background: white;
+            border-radius: 30px;
+        }
+
+        .form-left-decoration, .form-right-decoration {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 20px;
+            background: #f69a73;
+            border-radius: 20px;
+        }
+        .form-left-decoration {
+            bottom: 60px;
+            left: -30px;
+        }
+        .form-right-decoration {
+            top: 60px;
+            right: -30px;
+        }
+        .form-left-decoration:before, .form-left-decoration:after, .form-right-decoration:before, .form-right-decoration:after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 20px;
+            border-radius: 30px;
+            background: white;
+        }
+        .form-left-decoration:before {
+            top: -20px;
+        }
+        .form-left-decoration:after {
+            top: 20px;
+            left: 10px;
+        }
+        .form-right-decoration:before {
+            top: -20px;
+            right: 0;
+        }
+        .form-right-decoration:after {
+            top: 20px;
+            right: 10px;
+        }
+        .circle {
+            position: absolute;
+            bottom: 80px;
+            left: -55px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .form-inner {
+            padding: 50px;
+        }
+
+        .form-inner input {
+            display: block;
+            width: 100%;
+            padding: 0 20px;
+            margin-bottom: 10px;
+            background: #E9EFF6;
+            line-height: 40px;
+            border-width: 0;
+            border-radius: 20px;
+            font-family: 'Roboto', sans-serif;
+            text-decoration: none;
+            margin-top: 5px;
+        }
+
+        .form-inner input[type="submit"] {
+            margin-top: 30px;
+            background: #f69a73;
+            border-bottom: 4px solid #d87d56;
+            color: white;
+            font-size: 14px;
+            outline: none;
+            -moz-appearance: none;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .form-inner textarea {
+            display: block;
+            width: 100%;
+            outline: none;
+            -moz-appearance: none;
+            resize: vertical;
+            height: 300px;
+            padding: 0 20px;
+            margin-bottom: 10px;
+            background: #E9EFF6;
+            line-height: 40px;
+            border-width: 0;
+            border-radius: 20px;
+            font-family: 'Roboto', sans-serif;
+            text-decoration: none;
+        }
+
+        .btn {
+            position: relative;
+            display: block;
+            width: 100%;
+            padding: 0 20px;
+            margin-bottom: 10px;
+            background: #E9EFF6;
+            line-height: 40px;
+            border-width: 0;
+            border-radius: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+
+        .form-inner h3 {
+            text-align: center;
+            margin-top: 0;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 24px;
+            color: #707981;
+        }
+
+        .form-inner h2 {
+            text-align: left;
+            margin-top: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            color: #707981;
+        }
+
+        .form-inner a {
+            text-align: left;
+            margin-top: 0;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 18px;
+            color: black;
+            word-break: break-all;
+        }
+
+        .button {
+            margin-top: 10px;
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: darkgrey;
+            background-color: #E9EFF6;
+            border: none;
+            border-radius: 15px;
+            font-family: 'Roboto', sans-serif;
+        }
+
+    </style>
+</head>
+<body>
+<form th:action="@{/login}" method="post" class="decor_2">
+    <div class="form-left-decoration"></div>
+    <div class="form-right-decoration"></div>
+    <div class="circle"></div>
+    <div class="form-inner">
+        <h3>Главная страница</h3>
+        <div th:each="link : ${listLinks}">
+                <div class="button"><a th:href="@{/{links}(links=${link[0]})}" th:text="${link[1]}">User</a></div>
+                 </div>
+            <form th:action="@{/logout}" method="post" class="input">
+                <div><input type="submit" value="Выйти из системы"/></div>
+            </form>
+        </div>
+</form>
+</body>
+</html>
